@@ -1,0 +1,27 @@
+services:
+  vllm-lora:
+    image: vllm/vllm-openai:latest
+    container_name: minicpm5-vllm-lora
+    ports:
+      - "8001:8001"
+    volumes:
+      - F:/cursorProjects/miniCPM/models/MiniCPM5-1B:/model
+      - F:/cursorProjects/miniCPM/runs/minicpm5_lora/adapter_final:/lora
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    command: >
+      --model /model
+      --served-model-name MiniCPM5-1B
+      --dtype bfloat16
+      --max-model-len 32768
+      --gpu-memory-utilization 0.85
+      --port 8001
+      --host 0.0.0.0
+      --enable-lora
+      --lora-modules xiaozhi=/lora
+      --max-lora-rank 32

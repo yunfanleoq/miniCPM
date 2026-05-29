@@ -1,0 +1,23 @@
+services:
+  vllm:
+    image: vllm/vllm-openai:latest
+    container_name: minicpm5-vllm
+    ports:
+      - "8000:8000"
+    volumes:
+      - F:/cursorProjects/miniCPM/models/MiniCPM5-1B:/model
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    command: >
+      --model /model
+      --served-model-name MiniCPM5-1B
+      --dtype bfloat16
+      --max-model-len 32768
+      --gpu-memory-utilization 0.85
+      --port 8000
+      --host 0.0.0.0

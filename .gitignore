@@ -1,17 +1,16 @@
-.*DS_Store
-*__pycache__*
-*.pyc
-finetune/output/*
-wip.*
-.idea
-venv
-.venv
-.env
-
-# Local inference artifacts downloaded during testing.
-local_runtime/
+.venv/
+.cursor/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.log
+.DS_Store
+Thumbs.db
 models/
-
-# 雷达图数据源 + 渲染脚本 (产物 PNG 进 assets/, 不同步源)
-榜单.csv
-scripts/
+runs/
+checkpoints/
+*.safetensors
+*.gguf

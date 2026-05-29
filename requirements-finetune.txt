@@ -1,0 +1,6 @@
+# LoRA fine-tuning dependencies (Windows-friendly, no flash-attn/deepspeed)
+trl==0.21.0
+peft>=0.14
+datasets>=3.0
+tensorboard>=2.18
+accelerate>=1.0
